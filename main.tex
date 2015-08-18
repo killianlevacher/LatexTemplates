@@ -1,26 +1,13 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% University/School Laboratory Report
-% LaTeX Template
-% Version 3.1 (25/3/14)
-%
-% This template has been downloaded from:
-% http://www.LaTeXTemplates.com
-%
-% Original author:
-% Linux and Unix Users Group at Virginia Tech Wiki 
-% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
-%
-% License:
-% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
 \documentclass{article}
-\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+
+\usepackage{lipsum} % Creates dummy text content
+
+\usepackage{geometry}
 \geometry{a4paper}    
 
 \usepackage[version=3]{mhchem} % Package for chemical equation typesetting
@@ -50,12 +37,9 @@
 
 
 %Acronym list
-\newacronym{lda}{LDA}{Latent Dirichlet allocation}
-\newacronym{lsa}{LSA}{Latent semantic analysis}
-\newacronym{ner}{NER}{Named Entity Recognition}
-\newacronym{nel}{NEL}{Named Entity Linking}
 \newacronym{nlp}{NLP}{Natural Language Processing}
-\newacronym{wsd}{WSD}{Word sense disambiguation}
+
+
 
 
 
@@ -63,7 +47,7 @@
 %	DOCUMENT INFORMATION
 %----------------------------------------------------------------------------------------
 
-\title{Content Analysis Orientation Report} % Title
+\title{My Report Title} % Title
 
 \author{Killian \textsc{Levacher}} % Author name
 
@@ -73,98 +57,33 @@
 
 \maketitle % Insert the title, author and date
 
-% If you wish to include an abstract, uncomment the lines below
+% ABSTRACT EXAMPLE
 % \begin{abstract}
 % Abstract text
 % \end{abstract}
 
-%----------------------------------------------------------------------------------------
-%	SECTION 1
-%----------------------------------------------------------------------------------------
 
-\section{Introduction}
-The aim of this report is to provide a short high level orientation overview of typical content analysis tasks performed over textual content. In particular the intention is to focus specifically upon standard \gls{nlp} analysis performed for this purpose, including tools and algorithms available to perform these operations. Since the analysis of social media corpora is a relatively new field, particular focus is also given over the use of techniques over this type of content. 
+\section{Section A}
+\label{sectionLabel}
 
-For conciseness purposes, this report purposely does not cover standard low level \gls{nlp} tasks (such as tokenisation, part-of-speech tagging or sentence splitting tasks, etc.). Nevertheless since higher level tasks are built upon these, the performance of these tasks over social media corpora for instance does have a direct impact over the accuracy of higher level task in this domain (see section \ref{socialMediaSection} ).
+%ACRONYM AND CITATION EXAMPLE
+This \gls{nlp} is an acronym, and this \cite{Derczynski2015} is a citation \\ \\
+\lipsum[1-2] 
 
-\section{Content Analysis via NLP Tasks}
+\subsection{Subsection A1}
+\lipsum[1-1] 
 
-\gls{nlp} algorithms have been around since the 1950s evolving from manually written rule based systems towards more statistical oriented algorithms in the 1980s \cite{Nadkarni}. Until recently, the vast majority of these tools (including those listed in this section) have been trained and developed for the purpose of analysing highly curated textual material; newswires in particular being by far the most popular corpora targeted. As will be presented in section \ref{socialMediaSection}, recent developments have started focusing on the wealth of social media corpora available, which is proving very challenging.
+\section{Section B}
 
 
+
+% ENUMERATION EXAMPLE
 \begin{enumerate}[label=\bfseries \arabic*:]
-  \item \textbf{Spelling and Grammatical Error Identification} as it's name suggests, attempts to identify any syntactic error in a text. Although this task may seem trivial, identifying these mistakes can be more challenging that it appears. Incorrectly used homophones (e.g. their/there) for example can easily be considered as false negatives. Spelling and grammar error identification typically also implies identifying the most appropriate correct replacement among a list of possible candidates. This can involve simply calculating edit distances between a target token and a predefined vocabulary dictionary, as well as taking into account the sentence context of a given token to suggest the most adequate spelling correction.
-\\ \textbf{Relevant Libraries \& Tools:} \cite{Freeling2015, PyEnchant2015}.
-
-  \item \textbf{\gls{wsd}} consists in determining a homograph's correct meaning. A homograph is a word that shares the same written form as another but has a different meaning (e.g. "bear" meaning "the animal" or "bear" meaining "to carry").
-\\ \textbf{Relevant Libraries \& Tools:} \cite{PYWSD2015,UWSD2015}
-
-  \item \textbf{\gls{ner} } focuses on identifying specific tokens or phrases referred to as ‘entities’ and assigning to them category labels (such as persons, locations, diseases, genes, or medication)
-%ANNIE, Stanford, alchempi, dbpedia spotlight
-\\ \textbf{Relevant Libraries \& Tools:} \cite{AlchemyAPI2015,Stanford2015,Dbpedia2015,Gate2015,TextRazor2015,Lupedia2015}
-
-  \item \textbf{\gls{nel}} succeeds a \gls{ner} task by connecting discovered entities with a formal vocabulary (eg: Dbpedia). 
-%alchemeapi and all the others mentioned in Kalina's paper
-\\ \textbf{Relevant Libraries \& Tools:} \cite{AlchemyAPI2015,Lupedia2015,TextRazor2015,Dbpedia2015}
-
-  \item \textbf{Topic Detection} aims to assign a label representing the main topic covered by a sequence of tokens or paragraph. \gls{lda} \& \gls{lsa} are the most commonly used algorithms underlying existing tools.
-\\ \textbf{Relevant Libraries \& Tools:} \cite{AlchemyAPI2015,NLTK2015,TextRazor2015,Twitter_LDA2015}
-
-  \item \textbf{Event Detection} mainly aims at finding and following events within textual content \cite{Atefeh2013,Mcclosky2005}. This is particularly useful for identifying emergent news stories or tracking the activity related to specific entities (e.g. "UN Official resigns amid  recent scandal").
-\\ \textbf{Relevant Libraries \& Tools:} \cite{Stanford2015a,Gate2015}
-
-  \item \textbf{Relationship extraction} involves determining the relationship (such as ‘treats,’ ‘causes,’ and ‘occurs with’) between entities or events identified as part of previous \gls{nlp} tasks.
-\\ \textbf{Relevant Libraries \& Tools:} \cite{IBM2015,AlchemyAPI2015}
-
-%MAYBE PUT IT BACK BUT I NEED TO FIND A LIBRARY
-%  \item \textbf{Negation and uncertainty identification} involves inferring whether a named entity is present or absent, and quantifying the uncertainty of that inference. The importance and value of such a task is particularly obvious for example while automatically analysing a medical diagnostic (e.g: a patient \textit{denied} a headache pain).
-%\\ \textbf{Relevant Libraries \& Tools:} blablabla
-
-  \item \textbf{Coreference Resolution} is an \gls{nlp} task that determines relationships between identical entities within a text. A typical examples of coreferences consist of that of a pronoun with an entity previously mentioned ("she" referring to "the Queen").
-\\ \textbf{Relevant Libraries \& Tools:} \cite{Stanford2015b,OpenNLP2015}
-
-  \item \textbf{Temporal relationship extraction} enables an analysis to make inferences from temporal expressions and temporal relations within a text (the accident occurred "after" she left left the house) \cite{Tao2010}.
-%Can't find any tools
-
-  \item \textbf{Discourse Analysis} enables the identification of the nature of the discourse relationships between sentences (e.g. elaboration, explanation, contrast, a yes-no question, an assertion etc.) \cite{Cimiano2005}
-%\\ \textbf{Relevant Libraries \& Tools:} blablabla
-
-  \item \textbf{Natural Language Understanding} aims at converting chunks of text into first-order logic formal representations structures that can be automatically manipulated by computers \cite{Jung2011}.
-
-  \item \textbf{Sentiment Analysis} aims at detecting the opinion or sentiment expressed within a text. This can include i) sentiment classification which extracts the polarity of an expression (e.g. positive, negative, neutral or a numerical scale), ii) sentiment summarisation which derive an overall sentiment score or iii) feature-based opinion association that decides which opinion relates to a particular feature targeted.
-\\ \textbf{Relevant Libraries \& Tools:} \cite{AlchemyAPI2015, NLTK2015}
+  \item \textbf{Enum Item 1} \lipsum*[1-1] 
 
 \end{enumerate}
 
-
-
-\section{NLP on Social Media Corpora}
- \label{socialMediaSection}
  
-\subsection{What's so special about Social Media?}
-
-In very recent years, due to the explosion of social media, significant research in \gls{nlp} has been focusing upon applying existing tools and techniques over this new form of content. Doing so turns out to be a challenging task for many reasons \cite{Atefeh2013}. Social media content typically i) contains many spelling/grammar mistakes, ii) it is usually very short, iii) uses a significant amount of informal language, iv) often contains meaningless or polluted content v) contains mix-languages together and v) contains improper sentence structures \cite{Derczynski2015}. 
-
-In addition to these syntactic issues, social media content is also used for other purposes than traditional media and therefore usually covers other types of entities typically not found as often in newswires \cite{Zhao2011}. In normal circumstances, dealing with the previous problem would typically involve simply re-training machine learning models used for each \gls{nlp} tasks over this type of content, however social media is known to be affected by what is called 'entity drift' \cite{Masud2010}, which refers to the very time sensitive nature of this content. Training an \gls{nlp} tool over an arbitrary set of tweets for example, would certainly provide a better performance over tweets produced around the same time, but would be very poor for other period of time (since entities mentioned within that period could be completely different depending on world events).
-
-\subsection{How does traditional \gls{nlp} perform?} 
-
-For all these reasons, traditional \gls{nlp} tools today, in particular higher level \gls{nlp} tasks, still perform very poorly over this type of content (typically \textless 50\% accuracy on social media compared to \textgreater 90\% for traditional corpora \cite{Derczynski2015,Ritter2011}). For more detailed information about this issue, Derczynski \cite{Derczynski2015} presents a good review of performance for \gls{ner} and \gls{nel} tasks in particular, as well as an analysis of the causes for such low performance.
- 
-Most techniques today dealing with the use of \gls{nlp} algorithms over social media \cite{Ifrim2014}, deal with this new form of content by training existing machine learning algorithms over this new domain and before doing so, perform a normalisation task over this content \cite{Han2011,Han2012} prior to any other \gls{nlp} task. This task involves, building domain specific dictionaries, \gls{wsd}, rearranging sentence structures, interpreting emoticons and other special symbols (hashtags, @ mentions etc.).
- 
-\textbf{Relevant Libraries \& Tools:} There exists still relatively few tools available to process social media specifically at the moment. Those that exist are still very experimental with have limited performance. Among others these include:
-\begin{itemize}
-	\item  \textbf{\gls{ner} \& \gls{nel}:}  YODIE \cite{YODIE2015}, Stanford-Twitter \gls{ner} \cite{Stanford2015}, , NERDML \cite{NERD_ML2015}
-	\item \textbf{Topic Detection:} TwitterLDA \cite{Twitter_LDA2015}	
-	\item \textbf{General Purpose:} TwitterNLP \cite{NLP2015}, Pattern \cite{Smedt2012}, NLTK \cite{NLTK2015}
-\end{itemize} 
-
-%\section{Machine Learning NLP????}
-% The one identifying experts \cite{Pal2011}
-
-% most of those nlp tasks presented above use ml but ml can also be used more generally for other tasks by using nlp outputs as ml feature input, 
-%Tools: http://pybrain.org/
 
 
 
