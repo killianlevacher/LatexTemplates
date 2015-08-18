@@ -1,0 +1,13 @@
+#Ignore Everything
+*
+
+#But not these files
+!.gitignore
+!*.tex
+!*.bib
+!README.MD
+!LICENCE
+
+#These are exceptions to the file type I just said NOT to be ignored
+main-blx.bib
+
